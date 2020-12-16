@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Blog · Phoenix Framework</title>
+    <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <script defer type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
+    <style>
+    .img-fluid {
+      background-image: 
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+    }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-dark fixed-top navbar-expand-sm bg-transparent" style="position: absolute">
+      <div class="container-fluid ">
+        <%= link "Home", to: Routes.post_path(@conn, :index), class: "navbar-brand" %>
+        <div class="collapse d-flex">
+          <div class="navbar-nav">
+            <%= if function_exported?(Routes, :live_dashboard_path, 2) do %>
+              <%= link "LiveDashboard", to: Routes.live_dashboard_path(@conn, :home), class: "nav-link" %>
+            <% end %>
+            <%= if Pow.Plug.current_user(@conn) do %>
+              <%= link "Dashboard", to: Routes.admin_path(@conn, :show), class: "nav-link" %>
+              <%= link "New Post", to: Routes.post_path(@conn, :new), class: "nav-link" %>
+              <%= link "Sign out", to: Routes.session_path(@conn, :delete), method: :delete, class: "btn btn-danger" %>
+            <% else %>
+              <%= link "Sign in", to: Routes.session_path(@conn, :new), class: "btn" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </nav>
+      
+    <div class="p-5 text-center bg-image" style="background-image: url(<%= Routes.static_url(@conn, "/images/header.jpeg") %>); height: 600px;">
+      <div class="mask mt-5" style="background-color: rgba(0, 0, 0, 0.0); padding: 4rem;">
+        <div class="d-flex justify-content-center align-items-center h-100">
+          <div class="text-white">
+            <h1 class="display-4">Hello, Welcome To Our Blog!</h1>
+            <p class="lead">This is a school project. I created the blog (back-end and front-end), and the articles are written by my friend, Soroush Bandani.</p>
+            <%= link "About Us", to: Routes.session_path(@conn, :new), class: "btn btn-outline-light btn-lg" %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
+      <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+      <%= @inner_content %>
+    </div>
+
+  </body>
+</html>

@@ -1,0 +1,43 @@
+<%= form_for @changeset, @action, [multipart: true], fn f -> %>
+  <%= if @changeset.action do %>
+    <div class="alert alert-danger">
+      <p>Oops, something went wrong! Please check the errors below.</p>
+    </div>
+  <% end %>
+  
+  <div class="mb-3">
+    <label for="file" class="form-label">Select Header Image for your post</label>
+    <%= file_input f, :photo, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <label for="title" class="form-label">Title</label>
+    <%= text_input f, :title, class: "form-control", placeholder: "My Great Title!" %>
+    <%= error_tag f, :title %>
+  </div>
+
+  <%= hidden_input f, :user_id, value: Pow.Plug.current_user(@conn).id %>
+
+  <div class="mb-3">
+    <label for="body" class="form-label">Body</label>
+    <%= textarea f, :body, id: "editor", class: "form-control" %>
+    <%= error_tag f, :body %>
+  </div>
+
+  <div>
+    <%= submit "Save", class: "btn btn-primary" %>
+  </div>
+<% end %>
+
+<script src="https://cdn.ckeditor.com/ckeditor5/24.0.0/classic/ckeditor.js"></script>
+
+<script>
+  ClassicEditor
+    .create( document.querySelector( '#editor' ) )
+      .then( editor => {
+        console.log( editor );
+      } )
+      .catch( error => {
+        console.error( error );
+      } );
+</script>

@@ -1,0 +1,57 @@
+<h2 class="display-5">Hello <%= @user.username %>!</h2>
+<br>
+<h3 class="display-6">Users</h3>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Username</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= for u <- @users do %>
+      <tr>
+        <td><%= u.id %></td>
+        <td><%= u.username %></td>
+        <%= unless u.id == @user.id do %>
+          <td><%= link "Delete User", to: Routes.admin_path(@conn, :delete, u), method: :delete, class: "btn btn-danger" %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<h3 class="display-6">Create a new admin</h3>
+<br>
+
+<%= form_for @changeset, @action, [as: :user, method: :post], fn f -> %>
+  <%= if @changeset.action do %>
+    <div class="alert alert-danger">
+      <p>Oops, something went wrong! Please check the errors below.</p>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <label for="username" class="form-label">Username</label>
+    <%= text_input f, Pow.Ecto.Schema.user_id_field(@changeset), class: "form-control" %>
+    <%= error_tag f, Pow.Ecto.Schema.user_id_field(@changeset) %>
+  </div>
+
+  <div class="mb-3">
+    <label for="password" class="form-label">Passowrd</label>
+    <%= password_input f, :password, class: "form-control" %>
+    <%= error_tag f, :password %>
+  </div>
+
+  <div class="mb-3">
+    <label for="password_confitmation" class="form-label">Passowrd Confirmation</label>
+    <%= password_input f, :password_confirmation, class: "form-control" %>
+    <%= error_tag f, :password_confirmation %>
+  </div>
+
+  <div>
+    <%= submit "Create Admin", class: "btn btn-primary" %>
+  </div>
+<% end %>
