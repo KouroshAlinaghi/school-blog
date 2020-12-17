@@ -4,7 +4,6 @@
   <%= for post <- @posts do %>
     <div class="colc mt-5">
       <div class="card text-right h-100" style="width: 18rem;">
-        <img src="<%= Blog.Photo.url({post.photo, post}) %>" alt="<%= post.title %>" class="card-img-top">
         <div class="card-body">
           <h5><%= post.title %></h5>
           <p class="card-text"><small class="text-muted"><%= post.inserted_at |> BlogWeb.PostView.to_jalaali %></small></p>

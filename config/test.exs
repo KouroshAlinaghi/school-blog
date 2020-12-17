@@ -20,6 +20,3 @@ config :blog, BlogWeb.Endpoint,
 
 # Print only warnings and errors during test
 config :logger, level: :warn
-
-# Arc storage is always local
-config :arc, storage: Arc.Storage.Local

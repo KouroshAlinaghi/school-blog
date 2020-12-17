@@ -6,11 +6,6 @@
   <% end %>
   
   <div class="mb-3">
-    <label for="file" class="form-label">Select Header Image for your post</label>
-    <%= file_input f, :photo, class: "form-control-file" %>
-  </div>
-
-  <div class="mb-3">
     <label for="title" class="form-label">Title</label>
     <%= text_input f, :title, class: "form-control", placeholder: "My Great Title!" %>
     <%= error_tag f, :title %>
