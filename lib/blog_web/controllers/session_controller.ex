@@ -18,11 +18,12 @@ defmodule BlogWeb.SessionController do
         |> redirect(to: Routes.admin_path(conn, :show))
 
       {:error, conn} ->
+        action = Routes.session_path(conn, :create)
         changeset = Pow.Plug.change_user(conn, conn.params["user"])
 
         conn
         |> put_flash(:info, "Invalid email or password")
-        |> render("new.html", changeset: changeset)
+        |> render("new.html", changeset: changeset, action: action)
     end
   end
 
