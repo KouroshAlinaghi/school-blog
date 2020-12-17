@@ -1,16 +1,17 @@
-<h1>Posts</h1>
+<h1 class="display-4 text-center m-5">مقالات</h1>
 
 <div class="row row-cols-1 row-cols-md-3 g-4">
   <%= for post <- @posts do %>
-    <div class="col">
-      <div class="card h-100" style="width: 18rem;">
+    <div class="colc mt-5">
+      <div class="card text-right h-100" style="width: 18rem;">
         <img src="<%= Blog.Photo.url({post.photo, post}) %>" alt="<%= post.title %>" class="card-img-top">
         <div class="card-body">
           <h5><%= post.title %></h5>
-          <p class="card-text"><small class="text-muted"><%= post.inserted_at |> NaiveDateTime.to_date %></small></p>
-          <%= link "See Post", to: Routes.post_path(@conn, :show, post), class: "card-link" %>
+          <p class="card-text"><small class="text-muted"><%= post.inserted_at |> BlogWeb.PostView.to_jalaali %></small></p>
+          <p class="card-text"><%= post.body |> String.slice(0..40) |> raw %>...</p>
+          <%= link "دیدن پست", to: Routes.post_path(@conn, :show, post), class: "card-link" %>
         </div>
-        <div class="card-footer text-muted">
+        <div class="card-footer text-muted text-left">
           <p class="card-text"><small class="text-muted">Written By <%= post.user.username %></small></p>
         </div>
       </div>

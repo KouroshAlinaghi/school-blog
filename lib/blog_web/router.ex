@@ -49,6 +49,7 @@ defmodule BlogWeb.Router do
     pipe_through :browser
 
     resources "posts", PostController, only: [:show]
+    get "/about-us", PageController, :about_us
     get "/", PostController, :index
   end
 

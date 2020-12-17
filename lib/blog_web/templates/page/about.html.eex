@@ -1,0 +1,27 @@
+<div class="container text-center">
+  <h2 class="display-4">سلام!</h2>
+  <p class="mt-5" style="font-size: 25px;">این یک پروژه برای مدرسه است. من (کوروش علی‌نقی) وبلاگ را ساخته‌ام و دوستم، سروش بندانی نوشتن مقالات آن را به عهده داشته است.</p>
+  <div class="row">
+    <div class="col-sm-6">
+      <a target="_blank" href="https://kouroshalinaghi.github.io" class="card">
+        <div class="card-header">
+          کوروش علی‌نقی
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">برنامه‌نویس</h5>
+        </div>
+      </a>
+    </div>
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-header">
+          سروش بندانی
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">علاقه‌مند به فیزیک ذرات</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>

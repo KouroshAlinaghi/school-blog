@@ -1,7 +1,8 @@
 defmodule BlogWeb.PageController do
   use BlogWeb, :controller
 
-  def index(conn, _params) do
-    render(conn, "index.html")
+  def about_us(conn, _) do
+    conn
+    |> render("about.html")
   end
 end
