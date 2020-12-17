@@ -46,7 +46,6 @@ defmodule Blog.MixProject do
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},   
       {:pow, "~> 1.0.0"},
-      {:arc_ecto, "~> 0.11.3"},
       {:jalaali, "~> 0.3"}
     ]
   end
