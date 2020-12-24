@@ -39,6 +39,7 @@ defmodule BlogWeb.PostController do
 
   def update(conn, %{"id" => id, "post" => post_params}) do
     post = Social.get_post!(id)
+    post_params = Map.replace(post_params, "user_id", post.user_id)
 
     case Social.update_post(post, post_params) do
       {:ok, post} ->
